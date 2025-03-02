@@ -6,6 +6,8 @@ export declare class SqlUtils {
     getAllObjs<T>(table: string, options?: {
         queryParam?: string;
         queryValue?: string | number | boolean;
+        limit?: number;
+        order?: "ASC" | "DESC";
     }): Promise<Result<T, string>>;
     getAllObjsPaginated<T>(table: string, options?: {
         queryParam?: string;

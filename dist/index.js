@@ -29,9 +29,14 @@ class SqlUtils {
     async getAllObjs(table, options) {
         try {
             const select = await this.sql `
-        SELECT * FROM ${this.sql(table)} ${options?.queryParam
+        SELECT * FROM ${this.sql(table)} 
+        ${options?.queryParam
                 ? this.sql `WHERE ${this.sql(options.queryParam)} = ${options.queryValue}`
                 : this.sql ``}
+        ${options?.order
+                ? this.sql `ORDER BY id ${this.sql(options.order)}`
+                : this.sql ``}
+        ${options?.limit ? this.sql `LIMIT ${options.limit}` : this.sql ``}; 
       `;
             return {
                 success: true,
