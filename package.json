@@ -12,5 +12,8 @@
   },
   "peerDependencies": {
     "postgres": "^3.x"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
   }
 }
