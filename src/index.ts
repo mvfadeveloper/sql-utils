@@ -1,5 +1,5 @@
 import postgres, { PendingQuery, Row, Sql } from "postgres";
-import { InputData, Result } from "./index.d";
+import type { InputData, Result } from "./index.d";
 
 export class SqlUtils {
   private sql: Sql;
