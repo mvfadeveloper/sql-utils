@@ -1,4 +1,13 @@
-import { InputData, Result } from "./index.d";
+export type Result<T, E = Error> = {
+    success: true;
+    value: T;
+} | {
+    success: false;
+    error: E;
+};
+export interface InputData {
+    [column: string]: string | string[] | number | boolean | null;
+}
 export declare class SqlUtils {
     private sql;
     constructor(connectionString: string);

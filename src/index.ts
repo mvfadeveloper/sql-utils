@@ -1,5 +1,12 @@
 import postgres, { PendingQuery, Row, Sql } from "postgres";
-import { InputData, Result } from "./index.d";
+
+export type Result<T, E = Error> =
+  | { success: true; value: T }
+  | { success: false; error: E };
+
+export interface InputData {
+  [column: string]: string | string[] | number | boolean | null;
+}
 
 export class SqlUtils {
   private sql: Sql;
