@@ -89,6 +89,7 @@ export class SqlUtils {
       queryValue?: string | number | boolean;
       page?: number;
       pageSize?: number;
+      order?: "ASC" | "DESC";
     }
   ): Promise<Result<{ data: T; total: number; pageCount: number }, string>> {
     try {
@@ -119,7 +120,13 @@ export class SqlUtils {
             )} = ${options.queryValue!}`
           : this.sql``
       } 
-          ORDER BY id
+          ${
+            options?.order
+              ? options.order === "DESC"
+                ? this.sql`ORDER BY id DESC`
+                : this.sql`ORDER BY id ASC`
+              : this.sql`ORDER BY id`
+          }
           LIMIT ${pageSize} OFFSET ${offset}
         `;
 

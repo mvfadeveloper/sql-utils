@@ -23,6 +23,7 @@ export declare class SqlUtils {
         queryValue?: string | number | boolean;
         page?: number;
         pageSize?: number;
+        order?: "ASC" | "DESC";
     }): Promise<Result<{
         data: T;
         total: number;

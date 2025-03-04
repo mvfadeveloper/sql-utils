@@ -69,7 +69,11 @@ class SqlUtils {
           SELECT * FROM ${this.sql(table)} ${options?.queryParam
                 ? this.sql `WHERE ${this.sql(options.queryParam)} = ${options.queryValue}`
                 : this.sql ``} 
-          ORDER BY id
+          ${options?.order
+                ? options.order === "DESC"
+                    ? this.sql `ORDER BY id DESC`
+                    : this.sql `ORDER BY id ASC`
+                : this.sql `ORDER BY id`}
           LIMIT ${pageSize} OFFSET ${offset}
         `;
             return {
