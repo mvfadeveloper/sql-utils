@@ -60,11 +60,7 @@ export class SqlUtils {
               )} = ${options.queryValue!}`
             : this.sql``
         }
-        ${
-          options?.order
-            ? this.sql`ORDER BY id ${this.sql(options.order)}`
-            : this.sql``
-        }
+        ${options?.order ? this.sql`ORDER BY id ${options.order}` : this.sql``}
         ${options?.limit ? this.sql`LIMIT ${options.limit}` : this.sql``}; 
       `;
 
