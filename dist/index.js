@@ -34,7 +34,9 @@ class SqlUtils {
                 ? this.sql `WHERE ${this.sql(options.queryParam)} = ${options.queryValue}`
                 : this.sql ``}
         ${options?.order
-                ? this.sql `ORDER BY id ${this.sql(options.order)}`
+                ? options.order === "DESC"
+                    ? this.sql `ORDER BY id DESC`
+                    : this.sql `ORDER BY id ASC`
                 : this.sql ``}
         ${options?.limit ? this.sql `LIMIT ${options.limit}` : this.sql ``}; 
       `;
